@@ -2,22 +2,22 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 
+import {toggleSearchbar} from '../../Redux/searchbar/searchbar.action';
+
 import {HeaderContainer,ButtonContainer,HeadingContainer,LinkContainer,IconContainer} from './Header.styles';
 
-const Header = ({title,callbk}) => {
+const Header = ({title,toggleSearchbar}) => {
     return (
         <HeaderContainer>
           <LinkContainer href="index.html"><HeadingContainer>{title}</HeadingContainer></LinkContainer>
-          <ButtonContainer onClick={callbk}><IconContainer className="fa fa-search" /></ButtonContainer>
+          <ButtonContainer onClick={toggleSearchbar}><IconContainer className="fa fa-search" /></ButtonContainer>
         </HeaderContainer>
     );
 }
 
-// const mapStateToProps = (state) => ({
-//   a : state.homepage.a
-// })
+const mapDispatchToProps = (dispatch) => ({
+  toggleSearchbar : () => dispatch(toggleSearchbar()) 
+})
 
-// export default connect(mapStateToProps)(Header);
-
-export default Header;
+export default connect(null,mapDispatchToProps)(Header);
 

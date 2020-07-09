@@ -7,7 +7,7 @@ import MovieInfoPage from './Pages/movie-info-page/movie-info-page.component';
 
 import Header from './Components/Header/Header.component';
 import {Footer} from './Components/Footer/Footer.component';
-import {SearchBar} from './Components/SearchBar/SearchBar.component';
+import SearchBar from './Components/SearchBar/SearchBar.component';
 
 import './App.css';
 
@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
       <Header title="Movie Star"/>
-      <SearchBar className = {false ? "searchbarShow" : "searchbarHide" } />
+      <SearchBar />
       <hr />
       <Switch>
         <Route exact path="/" component={HomePage} />
