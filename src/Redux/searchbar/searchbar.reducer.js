@@ -17,6 +17,10 @@ export const searchbarReducer = (state = INITIAL_STATE,action) => {
                 ...state,
                 searchValue: action.payload
             }
+        case actionTypes.HIDE_SEARCHBAR:
+            return {
+                ...INITIAL_STATE
+            }
         default:
             return state;
     }

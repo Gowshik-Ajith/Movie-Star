@@ -30,7 +30,6 @@ export const fetchMovieAsync = (movieCategory,searchValue='') => {
     movieCategory === 'search' ? 
     url = `${BASE_URL}/${movieCategory}/movie?api_key=${API_KEY}&language=${lang}&query=${searchValue}` :
     url = `${BASE_URL}/movie/${movieCategory}?api_key=${API_KEY}&language=${lang}` ; 
-    console.log(url); 
     return (dispatch) => {
         dispatch(fetchMovieRequest(movieCategory));
         fetch(url)

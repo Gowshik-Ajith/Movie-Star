@@ -16,7 +16,8 @@ export const MovieCategory = ({heading,result,className}) => {
         <div className="Category">
         <HeadingContainer>{heading}</HeadingContainer>
         <CategoryContainer className = {className}>
-            {movieList.map(({id,poster_path,title}) => {
+            {
+            movieList.map(({id,poster_path,title}) => {
                 return poster_path ?
                 (<Movie key={id} src={`${BASE_IMAGE_URL}${poster_path}`} title={title}/>) :
                 (<Movie key={id} src={NoMoviePoster} title={title}/>);

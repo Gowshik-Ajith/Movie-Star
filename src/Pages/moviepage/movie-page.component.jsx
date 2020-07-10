@@ -4,26 +4,20 @@ import {createStructuredSelector} from 'reselect';
 
 import {MovieCategory} from '../../Components/Moviecategory/MovieCategory.component';
 
-import {fetchMovieAsync} from '../../Redux/homepage/homepage.action';
 import {hideSearchbar} from '../../Redux/searchbar/searchbar.action';
 import {selectPopularMovies,selectTrendingMovies,selectUpcomingMovies} from '../../Redux/homepage/homepage.selector';
 
 import SearchBar from '../../Components/SearchBar/SearchBar.component';
 
-const HomePage = ({fetchMovieAsync,popularMovies,trendingMovies,upcomingMovies,hideSearchbar}) => {
+const MoviePage = ({fetchMovieAsync,popularMovies,trendingMovies,upcomingMovies,hideSearchbar}) => {
     useEffect(() => {
-        fetchMovieAsync("popular");
-        fetchMovieAsync("top_rated");
-        fetchMovieAsync("upcoming");
         hideSearchbar();
     },[]);
     return(
     <div>
         <SearchBar />
         <hr />
-        <MovieCategory className = "MovieCategory" heading="Popular" result={popularMovies}/>
-        <MovieCategory className = "MovieCategory" heading="Trending" result={trendingMovies}/>
-        <MovieCategory className = "MovieCategory" heading="Upcoming" result={upcomingMovies}/>
+        <MovieCategory className = "resultArea" result={[...popularMovies,...trendingMovies,...upcomingMovies]}/>
      </div>
     )
 }
@@ -35,8 +29,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchMovieAsync: (movieCategory) => dispatch(fetchMovieAsync(movieCategory)),
     hideSearchbar: () => dispatch(hideSearchbar())
 }
 )
-export default connect(mapStateToProps,mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps,mapDispatchToProps)(MoviePage);

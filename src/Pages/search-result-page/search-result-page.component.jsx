@@ -1,22 +1,29 @@
 import React,{useEffect} from 'react';
+import {createStructuredSelector} from 'reselect';
 
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 
 import {fetchMovieAsync} from '../../Redux/homepage/homepage.action';
-import {keyAssignment} from '../../Redux/homepage/homepage.utils';
+import {selectSearchMovies} from '../../Redux/homepage/homepage.selector';
+
+import {hideSearchbar} from '../../Redux/searchbar/searchbar.action';
 
 import {MovieCategory} from '../../Components/Moviecategory/MovieCategory.component';
 import {ParaContainer} from '../../Components/SearchBar/SearchBar.styles';
 
-const SearchResultPage = ({match,search,popular,fetchMovieAsync}) => {
+import SearchBar from '../../Components/SearchBar/SearchBar.component';
+
+const SearchResultPage = ({match,search,fetchMovieAsync,hideSearchbar}) => {
     const {params: {searchTitle}} = match;
-    console.log(keyAssignment(popular));
     useEffect(() => {
         fetchMovieAsync('search',searchTitle);
+        hideSearchbar();
     },[searchTitle]);
     return (   
         <div>
+            <SearchBar />
+            <hr />
             <ParaContainer>
                 {search.length > 0 ? `${search.length} Movies Found` : `No Movies Found`}
             </ParaContainer>
@@ -25,13 +32,13 @@ const SearchResultPage = ({match,search,popular,fetchMovieAsync}) => {
     );
 }
 
-const mapStateToProps = (state) => ({
-    search: state.homepage.search.movieList,
-    popular: state.homepage.popular.movieList
+const mapStateToProps = createStructuredSelector({
+    search: selectSearchMovies,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchMovieAsync: (movieCategory,searchValue) => dispatch(fetchMovieAsync(movieCategory,searchValue))
+    fetchMovieAsync: (movieCategory,searchValue) => dispatch(fetchMovieAsync(movieCategory,searchValue)),
+    hideSearchbar: () => dispatch(hideSearchbar())
 })
 
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(SearchResultPage));

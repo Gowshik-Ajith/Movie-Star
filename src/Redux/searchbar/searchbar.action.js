@@ -12,3 +12,9 @@ export const updateSearchValue = (e) => (
         payload: e.target.value
     }
 )
+
+export const hideSearchbar = () => (
+    {
+        type: actionTypes.HIDE_SEARCHBAR
+    }
+)
