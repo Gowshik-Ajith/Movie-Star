@@ -1,15 +1,16 @@
 import React from 'react';
 
-import {Movie} from '../Movie/Movie.component';
+import {URLparams} from '../../Redux/homepage/URLparams';
 
 import NoMoviePoster from '../../NoMoviePoster.jpg';
 
+import {Movie} from '../Movie/Movie.component';
 import {CategoryContainer,HeadingContainer} from './MovieCategory.styles'
 
 
 
 export const MovieCategory = ({heading,result,className}) => {
-    const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w780";
+    const {BASE_IMAGE_URL} = URLparams;
     const movieList = result;
     return (
         <div className="Category">

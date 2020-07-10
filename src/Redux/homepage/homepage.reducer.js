@@ -1,4 +1,5 @@
 import {actionTypes} from './homepage.action.types';
+import {keyAssignment} from './homepage.utils';
 
 const INITIAL_STATE = {
     popular: {
@@ -16,7 +17,8 @@ const INITIAL_STATE = {
     search: {
         movieList: [],
         isFetching: false
-    }
+    },
+    movieData: {}
 };
 
 export const homepageReducer = (state = INITIAL_STATE,action) => {
@@ -35,7 +37,8 @@ export const homepageReducer = (state = INITIAL_STATE,action) => {
                 [action.category]: {
                     movieList: action.payload,
                     isFetching: false
-                }
+                },
+                movieData: {...state.movieData,...keyAssignment(action.payload)}
             };
         case actionTypes.FETCH_MOVIE_FAILURE:
             return {

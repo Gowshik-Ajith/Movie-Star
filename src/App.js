@@ -20,7 +20,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/movies/search/:searchTitle" component={SearchResultPage} />
-        <Route path="/search/:movieId" component={MovieInfoPage} />
+        <Route exact path="/movies/:movieId" component={MovieInfoPage} />
       </Switch>
       <Footer content="By using this page you agree to our" link="User Agreement"/>
     </div>

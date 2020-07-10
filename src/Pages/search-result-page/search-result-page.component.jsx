@@ -4,13 +4,14 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom'
 
 import {fetchMovieAsync} from '../../Redux/homepage/homepage.action';
+import {keyAssignment} from '../../Redux/homepage/homepage.utils';
 
 import {MovieCategory} from '../../Components/Moviecategory/MovieCategory.component';
 import {ParaContainer} from '../../Components/SearchBar/SearchBar.styles';
 
-const SearchResultPage = ({match,search,fetchMovieAsync}) => {
+const SearchResultPage = ({match,search,popular,fetchMovieAsync}) => {
     const {params: {searchTitle}} = match;
-    console.log(match);
+    console.log(keyAssignment(popular));
     useEffect(() => {
         fetchMovieAsync('search',searchTitle);
     },[searchTitle]);
@@ -26,7 +27,7 @@ const SearchResultPage = ({match,search,fetchMovieAsync}) => {
 
 const mapStateToProps = (state) => ({
     search: state.homepage.search.movieList,
-    searchValue: state.searchbar.searchValue
+    popular: state.homepage.popular.movieList
 });
 
 const mapDispatchToProps = (dispatch) => ({
