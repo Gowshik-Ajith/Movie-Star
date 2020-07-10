@@ -1,7 +1,8 @@
 import {actionTypes} from './searchbar.action.types';
 
 const INITIAL_STATE = {
-    isHidden: true
+    isHidden: true,
+    searchValue: ''
 };
 
 export const searchbarReducer = (state = INITIAL_STATE,action) => {
@@ -9,7 +10,12 @@ export const searchbarReducer = (state = INITIAL_STATE,action) => {
         case actionTypes.TOGGLE_SEARCHBAR:
             return {
                 ...state,
-                isHidden: !state.isHidden
+                isHidden: !state.isHidden,
+            }
+        case actionTypes.UPDATE_SEARCH_VALUE:
+            return {
+                ...state,
+                searchValue: action.payload
             }
         default:
             return state;

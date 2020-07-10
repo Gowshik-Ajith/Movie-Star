@@ -12,6 +12,10 @@ const INITIAL_STATE = {
     upcoming: {
         movieList: [],
         isFetching: false
+    },
+    search: {
+        movieList: [],
+        isFetching: false
     }
 };
 

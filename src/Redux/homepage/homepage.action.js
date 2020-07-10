@@ -25,14 +25,17 @@ const fetchMovieFailure = (errorMessage,movieCategory) => (
     }
 )
 
-export const fetchMovieAsync = (movieCategory) => {
-
-    const url = `${BASE_URL}/movie/${movieCategory}?api_key=${API_KEY}&language=${lang}`;
+export const fetchMovieAsync = (movieCategory,searchValue='') => {
+    let url;
+    movieCategory === 'search' ? 
+    url = `${BASE_URL}/${movieCategory}/movie?api_key=${API_KEY}&language=${lang}&query=${searchValue}` :
+    url = `${BASE_URL}/movie/${movieCategory}?api_key=${API_KEY}&language=${lang}` ; 
+    console.log(url); 
     return (dispatch) => {
         dispatch(fetchMovieRequest(movieCategory));
         fetch(url)
         .then((response) => response.json())
         .then(({results}) => dispatch(fetchMovieSuccess(results,movieCategory)))
-        .catch((error) => dispatch(fetchMovieFailure(error.message,movieCategory)));
+        .catch(({message}) => dispatch(fetchMovieFailure(message,movieCategory)));
     }
 }

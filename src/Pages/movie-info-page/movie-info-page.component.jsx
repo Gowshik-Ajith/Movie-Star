@@ -2,7 +2,7 @@ import React from 'react';
 
 const MovieInfoPage = () => (
     <h1>
-        Movie Description Page
+        Movie Description 
     </h1>
 )
 

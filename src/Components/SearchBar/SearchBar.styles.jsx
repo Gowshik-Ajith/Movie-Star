@@ -12,13 +12,13 @@ export const SearchBarHideContainer = css`
 `;
 
 const classSelector = ({className}) => {
-    if(className === "searchbarShow")
+    if(className === "searchbarHide")
     {
-        return SearchBarShowContainer;
+        return SearchBarHideContainer;
     }
     else
     {
-        return SearchBarHideContainer;
+        return SearchBarShowContainer;
     }
 }
 

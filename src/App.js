@@ -19,7 +19,7 @@ function App() {
       <hr />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/search" component={SearchResultPage} />
+        <Route exact path="/movies/search/:searchTitle" component={SearchResultPage} />
         <Route path="/search/:movieId" component={MovieInfoPage} />
       </Switch>
       <Footer content="By using this page you agree to our" link="User Agreement"/>
