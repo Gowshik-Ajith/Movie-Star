@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import {persistReducer} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import sessionStorage from 'redux-persist/lib/storage/session';
 
 import {homepageReducer} from './homepage/homepage.reducer';
 import {searchbarReducer} from './searchbar/searchbar.reducer';
@@ -8,7 +8,7 @@ import {searchbarReducer} from './searchbar/searchbar.reducer';
 
 const persistConfig = {
     key: 'root',
-    storage,
+    storage: sessionStorage,
     whitelist: ['homepage']
 }
 
