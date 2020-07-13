@@ -9,7 +9,7 @@ import {selectPopularMovies,selectTrendingMovies,selectUpcomingMovies} from '../
 
 import SearchBar from '../../Components/SearchBar/SearchBar.component';
 
-const MoviePage = ({fetchMovieAsync,popularMovies,trendingMovies,upcomingMovies,hideSearchbar}) => {
+const MoviePage = ({popularMovies,trendingMovies,upcomingMovies,hideSearchbar}) => {
     useEffect(() => {
         hideSearchbar();
     },[]);
@@ -30,6 +30,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
     hideSearchbar: () => dispatch(hideSearchbar())
-}
-)
+})
+
 export default connect(mapStateToProps,mapDispatchToProps)(MoviePage);
